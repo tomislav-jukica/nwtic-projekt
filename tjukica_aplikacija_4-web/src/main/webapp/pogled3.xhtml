@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pogled 3</title>
+    </h:head>
+    <h:body>       
+        <h:form id="odjava">
+            <h:commandButton value=" Odjava " action="#{pogled3.odjava()}">
+                <f:ajax execute="odjava"/>
+            </h:commandButton>
+        </h:form>
+        
+        <h:outputLink value="#{application.contextPath}/pogled4.xhtml">Pogled 4</h:outputLink><br/>
+        <h:outputLink value="#{application.contextPath}/pogled5.xhtml">Pogled 5</h:outputLink><br/>
+        
+        
+        <h2>Aerodromi</h2>
+        <p:dataTable id="aerodromi" value="${pogled3.mojiAerodromi()}" var="a" rows="10"                     
+                     paginator="true" rowsPerPageTemplate="5,10,50,100"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <p:column>
+                <f:facet name="header">IDENT</f:facet>#{a.ident.ident}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Naziv</f:facet>#{a.ident.name}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Država</f:facet>#{a.ident.isoCountry}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Broj korisnika koji prate</f:facet>#{pogled3.brojPratitelja(a.ident.ident)}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Broj dana za koji su preuzeti podatci</f:facet>#{pogled3.brojPreuzetihDana(a.ident.ident)}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Broj preuzetih letova za taj aerodrom</f:facet>#{pogled3.brojPreuzetihLetova(a.ident)}
+            </p:column>                     
+        </p:dataTable>
+        
+        <h:form id="filter">
+            <h:outputLabel>Naziv aerodroma:</h:outputLabel>
+            <h:inputText value="#{pogled3.aerodromNaziv}"/>
+            <h:commandButton value=" Filtriraj "  action="#{pogled3.filtrirajPoNazivu()}">
+                <f:ajax execute="filter" render="filter"/>
+            </h:commandButton>
+            
+            <h:selectOneListbox id="aerodromiFiltrirani" value="#{pogled3.odabraniAerodrom}" size="10">
+                <f:selectItems  value="#{pogled3.aerodromiFiltrirani}" var="k" itemLabel="#{k.name}" itemValue="#{k}"/>
+            </h:selectOneListbox>
+        </h:form>
+    </h:body>
+</html>
+
+

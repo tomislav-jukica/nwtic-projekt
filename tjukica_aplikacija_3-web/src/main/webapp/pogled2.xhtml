@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pogled 2</title>        
+    </h:head>
+    <h:body>       
+        <h:form id="odjava" rendered="${pogled1.prijavljen}">
+            <h:commandButton value=" Odjava " action="#{pogled2.odjava()}">
+                <f:ajax execute="odjava"/>
+            </h:commandButton>
+        </h:form>
+        <h:outputLink value="#{application.contextPath}/pogled3.xhtml">Pogled 3</h:outputLink><br></br>
+        <h2>Upravljanje poslužiteljem</h2>
+        
+        <h3>Status posluzitelja</h3>
+        <h:form id="status">
+            <h:outputLabel>Status: ${pogled2.status} </h:outputLabel>&nbsp;           
+                       
+        </h:form>
+        
+        <h3>Postavi status</h3>
+        <h:form id="postaviStatus">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" PAUZA " action="${pogled2.statusPauza()}">
+                <f:ajax execute="postaviStatus" render="postaviStatus status"/>
+            </h:commandButton>
+            <h:commandButton value=" RADI " action="${pogled2.statusRadi()}">
+                <f:ajax execute="postaviStatus" render="postaviStatus status"/>
+            </h:commandButton>
+            <h:commandButton value=" KRAJ " action="${pogled2.statusKraj()}">
+                <f:ajax execute="postaviStatus" render="postaviStatus status"/>
+            </h:commandButton>
+            <br/><br/>
+            <h:commandButton value=" Provjeri status " action="${pogled2.provjeriStatus()}">
+                <f:ajax execute="postaviStatus" render="postaviStatus status"/>
+            </h:commandButton> 
+            
+        </h:form>
+        
+        
+        <h2>Upravljanje grupama</h2>
+        
+        <h3>Status grupe</h3>
+        <h:form id="statusGrupe">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Provjeri status " action="${pogled2.provjeriStatusGrupe()}">
+                <f:ajax execute="statusGrupe" render="statusGrupe"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled2.statusGrupe}</h:outputLabel>
+        </h:form>
+        
+        <h3>Registriraj grupu</h3>
+        <h:form id="registrirajGrupu">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Registriraj grupu " action="${pogled2.registrirajGrupu()}">
+                <f:ajax execute="registrirajGrupu" render="registrirajGrupu"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled2.registracijaOdgovor}</h:outputLabel>
+        </h:form>
+        
+        <h3>Odjavi grupu</h3>
+        <h:form id="odjaviGrupu">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Odjavi grupu " action="${pogled2.odjaviGrupu()}">
+                <f:ajax execute="odjaviGrupu" render="odjaviGrupu"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled2.odjavaOdgovor}</h:outputLabel>
+        </h:form>
+        
+        <h3>Aktiviraj grupu</h3>
+        <h:form id="aktivirajGrupu">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Aktiviraj grupu " action="${pogled2.aktivirajGrupu()}">
+                <f:ajax execute="aktivirajGrupu" render="aktivirajGrupu"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled2.aktivirajOdgovor}</h:outputLabel>
+        </h:form>
+        
+        <h3>Blokiraj grupu</h3>
+        <h:form id="blokirajGrupu">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Blokiraj grupu " action="${pogled2.blokirajGrupu()}">
+                <f:ajax execute="blokirajGrupu" render="blokirajGrupu"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled2.blokirajOdgovor}</h:outputLabel>
+        </h:form>
+        
+        <h3>Aerodromi grupa</h3>
+        <h:form id="aerodromiGrupa">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled2.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled2.lozinka}" style="width: 330px"/><br/>
+            <h:outputLabel>Aerodrome odvajajte zarezom! --> KIND, BIKF, CYUL </h:outputLabel><br/>
+            <h:inputTextarea id="aerodromi" value="${pogled2.aerodromi}"></h:inputTextarea>
+            <h:commandButton value=" Dodaj aerodrome " action="${pogled2.aerodromiGrupa()}">
+                <f:ajax execute="aerodromiGrupa" render="aerodromiGrupa"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled2.aerodromiOdgovor}</h:outputLabel>
+        </h:form>
+    </h:body>
+</html>

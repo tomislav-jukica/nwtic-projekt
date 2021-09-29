@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pogled 1</title>
+    </h:head>
+    <h:body> 
+        <h:outputLink value="#{application.contextPath}/pogled2.xhtml">Pogled 2</h:outputLink><br></br>
+        <h:outputLink value="#{application.contextPath}/pogled3.xhtml">Pogled 3</h:outputLink><br></br>
+        <h2>Prijava</h2>
+        <h:form id="prijava">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korIme" value="${pogled1.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinka" value="${pogled1.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Prijava " action="${pogled1.prijava()}">
+                <f:ajax execute="prijava" render="prijavljen"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled1.greskaKodPrijave}</h:outputLabel>
+        </h:form>
+        
+        <h2>Registracija</h2>
+        <h:form id="registracija">
+            <h:outputLabel>Korisničko ime:</h:outputLabel>&nbsp;
+            <h:inputText id="korImeReg" value="${pogled1.korIme}" style="width: 330px"/><br/>
+            <h:outputLabel>Lozinka:</h:outputLabel>&nbsp;
+            <h:inputText id="lozinkaReg" value="${pogled1.lozinka}" style="width: 330px"/><br/>
+            <h:commandButton value=" Registracija " action="${pogled1.registracija()}">
+                <f:ajax execute="registracija" render="registracija prijavljen"/>
+            </h:commandButton>
+            <h:outputLabel>${pogled1.greskaKodRegistracije}</h:outputLabel>
+        </h:form>
+        
+        <h2>Popis svih korisnika</h2>
+        <p:dataTable id="korisnik" value="${pogled1.korisnici}" var="k" rows="10"
+                     paginator="true" rowsPerPageTemplate="5,10,50,100"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <p:column>
+                <f:facet name="header">Korisničko ime</f:facet>#{k.korIme}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Ime</f:facet>#{k.ime}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Prezime</f:facet>#{k.prezime}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Email</f:facet>#{k.emailAdresa}
+            </p:column>                
+        </p:dataTable>
+    </h:body>
+</html>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>NWTIS konfiguracija</comment>
+<entry key="server.database">jdbc:derby://localhost:1527/</entry>
+<entry key="admin.username">nwtis_g1</entry>
+<entry key="admin.password">g1_nwtis</entry>
+<entry key="admin.database">nwtis_tjukica_bp_1</entry>
+<entry key="user.username">nwtis_g1</entry>
+<entry key="user.password">g1_nwtis</entry>
+<entry key="user.database">nwtis_tjukica_bp_1</entry>
+<entry key="jdbc.mysql">com.mysql.jdbc.Driver</entry>
+<entry key="jdbc.derby">org.apache.derby.jdbc.ClientDriver</entry>
+<entry key="LocationIQ.token">da476faeefaf0e</entry>
+<entry key="OpenWeatherMap.apikey">b10ca7c5c0a8ac38718e730ca1619d93</entry>
+<entry key="OpenSkyNetwork.korisnik">tjukica</entry>
+<entry key="OpenSkyNetwork.lozinka">admin123</entry>
+<entry key="preuzimanje.status">true</entry>
+<entry key="preuzimanje.pocetak">01.01.2020</entry>
+<entry key="preuzimanje.kraj">15.06.2020</entry>
+<entry key="preuzimanje.ciklus">200</entry>
+<entry key="preuzimanje.pauza">200</entry>
+<entry key="posluzitelj.port">9000</entry>
+<entry key="mqtt.korisnik">tjukica</entry>
+<entry key="mqtt.lozinka">s8t7go</entry>
+<entry key="mqtt.host">nwtis.foi.hr</entry>
+<entry key="mqtt.port">61613</entry>
+<entry key="mqtt.destination">/NWTiS/tjukica</entry>
+</properties>

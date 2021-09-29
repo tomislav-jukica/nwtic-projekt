@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pogled 3</title>
+    </h:head>
+    <h:body>       
+        <h:form id="odjava">
+            <h:commandButton value=" Odjava " action="#{pogled5.odjava()}">
+                <f:ajax execute="odjava"/>
+            </h:commandButton>
+        </h:form>
+        <h:outputLink value="#{application.contextPath}/pogled3.xhtml">Pogled 3</h:outputLink><br/>
+        <h:outputLink value="#{application.contextPath}/pogled4.xhtml">Pogled 4</h:outputLink><br/>
+        <br/>
+
+        <h:form id="brisanjeAerodroma">
+            <h:selectOneListbox id="aerodromi" value="#{pogled5.odabraniAerodrom}" size="10">
+                <f:selectItems  value="${pogled5.dajVlastiteAerodrome()}" var="a" itemLabel="#{a.icao} #{a.naziv}" itemValue="#{a.icao}"/>
+            </h:selectOneListbox>
+
+
+            <h:commandButton  value=" Prestani pratiti " action="#{pogled5.obrisiAerodrom()}">
+                <f:ajax execute="brisanjeAerodroma" render="aerodromi"/>
+            </h:commandButton>
+
+            <h:commandButton value=" Obriši letove " action="#{pogled5.obrisiLetove()}">
+                <f:ajax execute="brisanjeAerodroma" render="aerodromi"/>
+            </h:commandButton>
+            <br/><br/>
+            <h:outputLabel>Min:</h:outputLabel>
+            <h:inputText value="${pogled5.udaljenostOd}"/><br/>
+            <h:outputLabel>Max:</h:outputLabel>
+            <h:inputText value="${pogled5.udaljenostDo}"/><br/>
+            <h:commandButton value=" Daj aerodrome " action="#{pogled5.dajAerodromePoUdaljenosti()}">
+                <f:ajax execute="brisanjeAerodroma" render="aerodromiFiltrirani"/>
+            </h:commandButton>
+        </h:form>
+
+        <h:selectOneListbox id="aerodromiFiltrirani" size="10">
+            <f:selectItems  value="#{pogled5.aerodromiFiltrirani}" var="k" itemLabel="#{k.icao} #{k.naziv}" itemValue="#{k.icao}"/>
+        </h:selectOneListbox>
+        <br/><br/>
+
+        <h:form id="udaljenost">
+            <h:outputLabel>ICAO 1:</h:outputLabel>
+            <h:inputText value="${pogled5.aerodrom1}"/><br/>
+            <h:outputLabel>ICAO 2:</h:outputLabel>
+            <h:inputText value="${pogled5.aerodrom2}"/><br/>
+            <h:commandButton value=" Izračunaj udaljenost " action="#{pogled5.izracunajUdaljenost()}">
+                <f:ajax execute="udaljenost" render="udaljenost"/>
+            </h:commandButton>
+            <h:outputLabel>#{pogled5.udaljenost}</h:outputLabel>
+        </h:form>
+    </h:body>
+</html>

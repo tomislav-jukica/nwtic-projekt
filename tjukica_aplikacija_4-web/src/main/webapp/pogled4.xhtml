@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Pogled 3</title>
+    </h:head>
+    <h:body>       
+        <h:form id="odjava">
+            <h:commandButton value=" Odjava " action="#{pogled4.odjava()}">
+                <f:ajax execute="odjava"/>
+            </h:commandButton>
+        </h:form>
+
+        <h:outputLink value="#{application.contextPath}/pogled3.xhtml">Pogled 3</h:outputLink><br></br>
+        <h:outputLink value="#{application.contextPath}/pogled5.xhtml">Pogled 5</h:outputLink><br></br>
+
+        <p:dataTable id="aerodromi" value="${pogled4.dajVlastiteAerodrome()}" var="a" rows="10"                     
+                     paginator="true" rowsPerPageTemplate="5,10,50,100"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <p:column>
+                <f:facet name="header">IDENT</f:facet>#{a.icao}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Naziv</f:facet>#{a.naziv}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Država</f:facet>#{a.drzava}
+            </p:column>                                
+        </p:dataTable>
+        
+        <h:form id="letoviAerodrom">
+            <h:outputLabel>Vrijeme od:</h:outputLabel>
+            <h:inputText id = "odVrijeme" value = "#{pogled4.odVrijeme}">
+                
+            </h:inputText><br/>
+            <h:outputLabel>Vrijeme do:</h:outputLabel>
+            <h:inputText id = "doVrijeme" value = "#{pogled4.doVrijeme}">
+                
+            </h:inputText><br/>
+            <h:outputLabel>Aerodrom:</h:outputLabel>
+            <h:inputText id = "aerodom" value = "#{pogled4.odabranAerodrom}"/><br/>
+            <h:outputLabel>Avion:</h:outputLabel>
+            <h:inputText id = "avion" value = "#{pogled4.odabranAvion}"/><br/><br/>
+            <h:commandButton value=" Traži po aerodromu " action="#{pogled4.dajLetovePoAerodromu()}">
+                <f:ajax execute="letoviAerodrom" render="letovi"/>
+            </h:commandButton>
+            <h:commandButton value=" Traži po avionu " action="#{pogled4.dajLetovePoAvionu()}">
+                <f:ajax execute="letoviAerodrom" render="letovi"/>
+            </h:commandButton>
+        </h:form>
+        
+        <p:dataTable id="letovi" value="${pogled4.letovi}" var="a" rows="10"                     
+                     paginator="true" rowsPerPageTemplate="5,10,50,100"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+            <p:column>
+                <f:facet name="header">Avion</f:facet>#{a.icao24}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Vrijeme polijetanja</f:facet>#{pogled4.dajDatum(a.firstSeen)}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Vrijeme slijetanja</f:facet>#{pogled4.dajDatum(a.lastSeen)}
+            </p:column>                                
+            <p:column>
+                <f:facet name="header">Aerodrom slijetanja</f:facet>#{a.estArrivalAirport}
+            </p:column>                                
+        </p:dataTable>
+
+    </h:body>
+</html>
+
+
